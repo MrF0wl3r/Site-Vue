@@ -44,4 +44,8 @@ export default {
     margin-left: 180px;
     height: 100vh;
 }
+
+.uppercase {
+  text-transform: uppercase;
+}
 </style>

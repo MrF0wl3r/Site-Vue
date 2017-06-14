@@ -4,15 +4,16 @@
         <div v-for="post in posts">
             <h1>{{ post.title }}</h1>
             <hr />
-            <div v-html="compiledMarkdown(post.content)"></div>
-            <div>
-                <span v-if="showComments" v-on:click="toggleComments">( - ) </span>
-                <span v-else v-on:click="toggleComments">( + ) </span>
-                Comments ({{ post.comments.length }})
-                <div v-if="showComments">
-                    <ul v-for="comment in post.comments">
-                        <li>{{ comment.message }}</li>
-                    </ul>
+            <div id="postcontent" v-html="compiledMarkdown(post.content)"></div>
+            <div id="postcomments">
+                <p v-on:click="toggleComments">
+                    Comments ({{ post.comments.length }})
+                </p>
+            </div>
+            <div v-if="showComments" v-for="comment in post.comments">
+                <div id="comment">
+                    <p id="commentname" class="uppercase">{{ comment.name }}</p>
+                    <p id="commentmessage">{{ comment.message }}</p>
                 </div>
             </div>
         </div>
@@ -33,8 +34,8 @@ export default {
                                '  \n\n' + 
                                ' Biltong landjaeger alcatra cupim, turkey brisket ball tip chuck short loin frankfurter. Short loin corned beef meatloaf, ribeye sirloin tenderloin ground round flank chuck shoulder beef fatback jerky. Pork chop venison strip steak, porchetta meatball pancetta bacon landjaeger. Ribeye pork chop frankfurter biltong. Beef short loin picanha, sausage strip steak biltong flank rump doner prosciutto brisket ribeye venison pork. Strip steak turkey pastrami beef pork. Bacon ground round shank landjaeger salami corned beef swine shankle beef ribs porchetta. Shoulder flank beef ribs doner jerky filet mignon sirloin rump fatback sausage boudin. Chuck prosciutto corned beef jowl, t-bone ham turducken drumstick pork belly salami cow. Frankfurter picanha tail shankle beef flank.',
                     'comments': [
-                        { 'message': 'Nice post!' },
-                        { 'message': 'Very meaty' }
+                        { 'name': 'Bob', 'message': 'Nice post!' },
+                        { 'name': 'Dylan', 'message': 'Very meaty' }
                     ]
                 }
             ],
@@ -57,7 +58,32 @@ export default {
     padding: 10px;
 }
 
-#blogposts div div p {
+#postcontent p {
     margin: 10px;
+}
+
+#postcomments {
+    background-color: #4f5660;
+    color: #cdd1d6;
+}
+
+#postcomments p {
+    padding: 4px;
+}
+
+#comment {
+    margin-top: 10px;
+    margin-left: 10px;
+    border: 1px solid #4f5660;
+}
+
+#commentname {
+    background-color: #4f5660;
+    color: #cdd1d6;
+    padding: 4px;
+}
+
+#commentmessage {
+    padding: 4px;
 }
 </style>
