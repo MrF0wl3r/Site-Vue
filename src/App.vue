@@ -48,4 +48,13 @@ export default {
 .uppercase {
   text-transform: uppercase;
 }
+
+.button {
+    background-color: #4f5660;
+    height: 25px;
+    border: none;
+    color: #cdd1d6;
+    text-align: center;
+    font-size: 18px;
+}
 </style>

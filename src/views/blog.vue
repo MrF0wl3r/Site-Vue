@@ -16,6 +16,22 @@
                     <p id="commentmessage">{{ comment.message }}</p>
                 </div>
             </div>
+            <table id="addcomment">
+                <tbody>
+                <tr>
+                    <td class="addcommentlabel">Name</td>
+                    <td><input class="addcommentdetail" v-model="commentorsname"></td>
+                </tr>
+                <tr>
+                    <td class="addcommentlabel">Message</td>
+                    <td><textarea class="addcommentdetail" v-model="commentorsmessage"></textarea></td>
+                </tr>
+                <tr>
+                    <div class="button" v-on:click="submitComment">Submit</div>
+                </tr>
+                </tbody>
+            </table>
+            
         </div>
     </div>
 </template>
@@ -39,7 +55,9 @@ export default {
                     ]
                 }
             ],
-            showComments: false
+            showComments: false,
+            commentorsname: '',
+            commentorsmessage: ''
         }
     },
     methods: {
@@ -48,6 +66,9 @@ export default {
         },
         toggleComments: function () {
             this.showComments = !this.showComments;
+        },
+        submitComment: function () {
+            console.log(this.commentorsname);
         }
     }
 }
@@ -85,5 +106,29 @@ export default {
 
 #commentmessage {
     padding: 4px;
+}
+
+#addcomment {
+    width: 100%;
+    margin-top: 10px;
+    padding: 2px;
+    border: 3px solid #4f5660;
+}
+
+#addcomment td {
+    padding: 4px;
+}
+
+#addcomment textarea {
+    height: 80px;
+}
+
+.addcommentlabel {
+    vertical-align: text-top;
+    width: 100px;
+}
+
+.addcommentdetail {
+    width: 100%;
 }
 </style>
